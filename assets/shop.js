@@ -120,6 +120,10 @@
 
   function drawCart() {
     $('items').replaceChildren(...(bag.length ? bag.map(cartLine) : [el('p', 'cart-hint', 'Пока здесь пусто. Выберите продукты в каталоге.')]));
+    drawSummary();
+  }
+
+  function drawSummary() {
     const summary = core.summarize(bag, products);
     $('cart-total').textContent = rub(summary.subtotalKopecks);
     $('minimum-progress').value = Math.min(core.MINIMUM_KOPECKS, summary.subtotalKopecks);
@@ -178,9 +182,20 @@
     input.setCustomValidity('');
     bag = bag.map(item => item.id === input.dataset.weight ? { ...item, amount: grams } : item);
     saveCart();
-    drawCart();
+    drawSummary();
   });
-  $('items').addEventListener('input', event => { if (event.target.matches('input[data-weight]')) event.target.setCustomValidity(''); });
+  $('items').addEventListener('input', event => {
+    const input = event.target.closest('input[data-weight]');
+    if (!input) return;
+    input.setCustomValidity('');
+    const grams = core.parseWeight(input.value);
+    if (grams === null) return;
+    const product = products.find(p => p.id === input.dataset.weight);
+    bag = bag.map(item => item.id === product.id ? { ...item, amount: grams } : item);
+    input.closest('.cart-line').querySelector('.cart-line-total').textContent = rub(core.lineTotal(product, grams));
+    saveCart();
+    drawSummary();
+  });
 
   $('open-cart').addEventListener('click', () => { drawCart(); cart.showModal(); });
   document.querySelectorAll('[data-close]').forEach(node => node.addEventListener('click', () => $(node.dataset.close).close()));
