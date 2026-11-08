@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shop.css?v=20261104">
+<link rel="stylesheet" href="assets/shop.css?v=20261108-2">
 <script defer src="assets/catalog.js?v=20261108">
 </script>
 <script defer src="assets/core.js?v=20261104">
 </script>
-<script defer src="assets/delivery.js?v=20261108">
+<script defer src="assets/delivery.js?v=20261108-2">
 </script>
 <script defer src="assets/shop.js?v=20261104-2">
 </script>
@@ -40,6 +40,7 @@
 </button>
   <span>Заказ от 5 000 ₽</span>
 </div>
+<p class="cash-payment-notice cash-payment-banner" data-cash-payment hidden>В Уфе можно оплатить заказ наличными</p>
 <main>
 <div class="hero">
 <div class="intro">
@@ -125,6 +126,7 @@
 <dialog id="cart" aria-labelledby="cart-title">
   <button class="close" type="button" aria-label="Закрыть корзину" data-close="cart">×</button>
   <h2 id="cart-title">Ваша корзина</h2>
+  <p class="cash-payment-notice" data-cash-payment hidden>В Уфе можно оплатить заказ наличными</p>
   <p class="cart-hint">Для весовых товаров укажите желаемый вес. Итог уточним после взвешивания.</p>
   <div id="items">
 </div>
@@ -164,7 +166,6 @@
     <label>Электронная почта <small>необязательно</small>
 <input id="customer-email" autocomplete="email" type="email" placeholder="name@example.ru" maxlength="254">
 </label>
-    <p id="cash-payment-note" class="checkout-note" role="status" hidden><strong>Оплата наличными доступна для заказов в Уфе.</strong> Детали уточнит менеджер.</p>
     <button class="btn checkout-disabled" type="button" disabled>Оформление готовится</button>
     <p class="checkout-note">Фасовку и итоговую сумму подтвердит менеджер. Онлайн-оплата пока не подключена.</p>
     <div class="checkout-consultation">

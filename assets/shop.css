@@ -31,6 +31,8 @@ header nav{display:flex;flex-shrink:0;gap:clamp(12px,2vw,28px);font-size:14px}
 .delivery-bar>span{flex:none;color:#5f6657}
 .delivery-trigger{display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--green);text-align:left;font-size:13px;font-weight:600;min-height:32px;padding:0;min-width:0}
 .delivery-trigger [data-delivery-label]{overflow-wrap:anywhere}
+.cash-payment-notice{margin:0 0 14px;padding:10px 14px;border-radius:8px;background:#e4ecda;color:#31472a;font-size:14px;font-weight:600;line-height:1.45}
+.cash-payment-banner{margin:0;padding-inline:5%;border-radius:0;border-bottom:1px solid var(--border)}
 
 /* Editorial home and product catalog */
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:600px}

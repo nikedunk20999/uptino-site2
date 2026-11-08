@@ -9,7 +9,7 @@
     const regionField = document.getElementById('delivery-region');
     const cityField = document.getElementById('delivery-city');
     const list = document.getElementById('regions');
-    const cashNote = document.getElementById('cash-payment-note');
+    const cashNotices = document.querySelectorAll('[data-cash-payment]');
     let delivery = core.normalizeDelivery(storage.read(core.DELIVERY_KEY));
 
     for (const region of regions) {
@@ -22,9 +22,11 @@
       document.querySelectorAll('[data-delivery-label]').forEach(label => {
         label.textContent = delivery ? `${delivery.region}, ${delivery.city}` : 'Выбрать регион доставки';
       });
-      const inBashkortostan = /^(?:республика\s+)?башкортостан$/i.test(delivery?.region || '');
+      const inBashkortostan = /^(?:(?:республика|респ\.)\s+)?башкортостан$/i.test(delivery?.region || '');
       const inUfa = /^(?:(?:г\.\s*|город\s+))?уфа$/i.test(delivery?.city || '');
-      cashNote.hidden = !(inBashkortostan && inUfa);
+      cashNotices.forEach(notice => {
+        notice.hidden = !(inBashkortostan && inUfa);
+      });
     }
 
     function open() {
